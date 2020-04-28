@@ -10,8 +10,8 @@ import Foundation
 
 extension RecipeTypeViewController {
     func routesToSender() {
-        self.dismiss(animated: true) {
-            print("done")
+        self.dismiss(animated: true) { [weak self] in
+            print(self?.currentRecipeType)
         }
     }
 }

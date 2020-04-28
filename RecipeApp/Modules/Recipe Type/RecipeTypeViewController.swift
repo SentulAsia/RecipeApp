@@ -14,6 +14,16 @@ class RecipeTypeViewController: UIViewController {
 
     static let identifier = "RecipeTypeViewController"
 
+    typealias Models = RecipeTypeModels
+    typealias LocalDataStoreModels = Models.FetchFromLocalDataStore
+    lazy var worker = RecipeTypeWorker()
+    var recipeTypes: [Models.RecipeType] = [] {
+        didSet {
+            updatePickerView()
+        }
+    }
+    var currentRecipeType = ""
+
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var recipeTypePickerView: UIPickerView!
 
@@ -23,6 +33,7 @@ class RecipeTypeViewController: UIViewController {
         super.viewDidLoad()
         setupPickerView()
         setupTapGesture()
+        fetchFromLocalDataStore()
     }
 
     // MARK: - Methods
@@ -36,6 +47,15 @@ class RecipeTypeViewController: UIViewController {
 
     // MARK: - Use Case
 
+    // MARK: Fetch From Local Data Store
+
+    func fetchFromLocalDataStore() {
+        let request = LocalDataStoreModels.Request(currentRecipeType: currentRecipeType)
+        worker.fetchFromLocalDataStore(request: request) { [weak self] (viewModel) in
+            self?.recipeTypes = viewModel.recipeTypes
+        }
+    }
+
     @IBAction func doneButtonTapped(_ sender: Any) {
         dismiss(sender)
     }
@@ -46,6 +66,15 @@ class RecipeTypeViewController: UIViewController {
 private extension RecipeTypeViewController {
     func setupPickerView() {
         recipeTypePickerView.isHidden = true
+        recipeTypePickerView.dataSource = self
+        recipeTypePickerView.delegate = self
+    }
+
+    func updatePickerView() {
+        if recipeTypes.count > 0 {
+            recipeTypePickerView.isHidden = false
+            recipeTypePickerView.reloadAllComponents()
+        }
     }
 
     func setupTapGesture() {

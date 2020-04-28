@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe>
+   <type id="1">
+       <name>Starter</name>
+   </type>
+   <type id="2">
+       <name>Main Course</name>
+   </type>
+   <type id="3">
+       <name>Dessert</name>
+   </type>
+   <type id="4">
+       <name>Drinks</name>
+   </type>
+</recipe>
