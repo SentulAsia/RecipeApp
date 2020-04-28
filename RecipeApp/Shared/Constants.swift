@@ -12,4 +12,10 @@ enum Constants {
     enum Storyboard {
         static let main = "Main"
     }
+
+    enum Assets {
+        static let recipeTypeXML = "recipetypes"
+        static let elementContainer = "type"
+        static let elementNameKey = "name"
+    }
 }

@@ -28,7 +28,7 @@ class RecipeTypeWorker: NSObject {
     func fetchFromLocalDataStore(request: LocalDataStoreModels.Request, completion: @escaping (_ viewModel: LocalDataStoreModels.ViewModel) -> Void) {
         validate(currentRecipeType: request.currentRecipeType)
 
-        if let path = Bundle.main.url(forResource: "recipetypes", withExtension: "xml") {
+        if let path = Bundle.main.url(forResource: Constants.Assets.recipeTypeXML, withExtension: "xml") {
             if let parser = XMLParser(contentsOf: path) {
                 parser.delegate = self
                 parser.parse()
@@ -60,7 +60,7 @@ private extension RecipeTypeWorker {
 
 extension RecipeTypeWorker: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        if elementName == "type" {
+        if elementName == Constants.Assets.elementContainer {
             recipeType = String()
         }
 
@@ -68,7 +68,7 @@ extension RecipeTypeWorker: XMLParserDelegate {
     }
 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "type" {
+        if elementName == Constants.Assets.elementContainer {
             let type = Models.RecipeType(name: recipeType)
             response.recipeTypes.append(type)
         }
@@ -78,7 +78,7 @@ extension RecipeTypeWorker: XMLParserDelegate {
         let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if (!data.isEmpty) {
-            if self.elementName == "name" {
+            if self.elementName == Constants.Assets.elementNameKey {
                 recipeType += data
             }
         }
