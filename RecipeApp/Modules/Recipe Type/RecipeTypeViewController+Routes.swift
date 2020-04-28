@@ -6,12 +6,14 @@
 //  Copyright © 2020 Zaid M. Said. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension RecipeTypeViewController {
     func routesToSender() {
         self.dismiss(animated: true) { [weak self] in
-            print(self?.currentRecipeType)
+            guard let destinationVC = UIApplication.shared.visibleViewController as? RecipeListViewController,
+                let currentRecipeType = self?.currentRecipeType else { return }
+            destinationVC.filteredRecipeType = currentRecipeType
         }
     }
 }

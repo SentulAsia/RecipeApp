@@ -28,11 +28,10 @@ class RecipeTypeWorker: NSObject {
     func fetchFromLocalDataStore(request: LocalDataStoreModels.Request, completion: @escaping (_ viewModel: LocalDataStoreModels.ViewModel) -> Void) {
         validate(currentRecipeType: request.currentRecipeType)
 
-        if let path = Bundle.main.url(forResource: Constants.Assets.recipeTypeXML, withExtension: "xml") {
-            if let parser = XMLParser(contentsOf: path) {
-                parser.delegate = self
-                parser.parse()
-            }
+        if let path = Bundle.main.url(forResource: Constants.Assets.recipeTypeXML, withExtension: "xml"),
+            let parser = XMLParser(contentsOf: path) {
+            parser.delegate = self
+            parser.parse()
         }
 
         let viewModel = Models.FetchFromLocalDataStore.ViewModel(recipeTypes: response.recipeTypes)

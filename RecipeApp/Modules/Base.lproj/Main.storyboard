@@ -40,12 +40,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="5LD-dZ-yBB">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="Tf6-Hc-aOk">
+                        <barButtonItem key="leftBarButtonItem" title="Filter: None" style="plain" id="Tf6-Hc-aOk">
                             <connections>
                                 <action selector="filterButtonTapped:" destination="BYZ-38-t0r" id="vUU-zQ-uIz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lMR-DN-ZNB">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="lMR-DN-ZNB">
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="FZo-KV-rqW"/>
                             </connections>
