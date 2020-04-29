@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - Routing
+
 extension RecipeTypeViewController {
     func routesToSender() {
         self.dismiss(animated: true) { [weak self] in

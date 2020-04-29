@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B83F4A122459294300DB041C /* RecipeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F4A112459294300DB041C /* RecipeListTests.swift */; };
 		B83F4A1424592E5000DB041C /* RecipeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F4A1324592E5000DB041C /* RecipeListTableViewCell.swift */; };
+		B83F4A172459318500DB041C /* RecipeDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F4A162459318500DB041C /* RecipeDetailModels.swift */; };
 		B85129E524580F08000696B2 /* AddNewRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85129E424580F08000696B2 /* AddNewRecipeViewController.swift */; };
 		B865A42A2458177C007DB667 /* recipetypes.xml in Resources */ = {isa = PBXBuildFile; fileRef = B865A4292458177C007DB667 /* recipetypes.xml */; };
 		B865A42E24581973007DB667 /* RecipeTypeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B865A42D24581973007DB667 /* RecipeTypeWorker.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		B83F4A112459294300DB041C /* RecipeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListTests.swift; sourceTree = "<group>"; };
 		B83F4A1324592E5000DB041C /* RecipeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListTableViewCell.swift; sourceTree = "<group>"; };
+		B83F4A162459318500DB041C /* RecipeDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailModels.swift; sourceTree = "<group>"; };
 		B85129E424580F08000696B2 /* AddNewRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRecipeViewController.swift; sourceTree = "<group>"; };
 		B865A4292458177C007DB667 /* recipetypes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = recipetypes.xml; sourceTree = "<group>"; };
 		B865A42D24581973007DB667 /* RecipeTypeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTypeWorker.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				B89DF19F245809A100A02F62 /* RecipeDetailViewController.swift */,
+				B83F4A162459318500DB041C /* RecipeDetailModels.swift */,
 			);
 			path = RecipeDetail;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				B89DF1752457E2D400A02F62 /* RecipeListViewController.swift in Sources */,
 				B8D857AB24585E830070027A /* Seeds.swift in Sources */,
 				B89DF1712457E2D400A02F62 /* AppDelegate.swift in Sources */,
+				B83F4A172459318500DB041C /* RecipeDetailModels.swift in Sources */,
 				B89DF1982457F2F400A02F62 /* RecipeTypeViewController.swift in Sources */,
 				B89DF1732457E2D400A02F62 /* SceneDelegate.swift in Sources */,
 				B8D857A82458591A0070027A /* DataStoreManager.swift in Sources */,

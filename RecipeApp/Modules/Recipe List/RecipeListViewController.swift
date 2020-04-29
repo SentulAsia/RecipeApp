@@ -36,6 +36,7 @@ class RecipeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        updateFilterButton()
         fetchFromLocalDataStore()
     }
 

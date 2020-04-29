@@ -14,10 +14,27 @@ class RecipeDetailViewController: UIViewController {
 
     static let identifier = "RecipeDetailViewController"
 
+    typealias Models = RecipeDetailModels
+
+    var recipe: Models.Recipe?
+
+    @IBOutlet var recipeImageView: UIImageView!
+    @IBOutlet var ingredientsTitleLabel: UILabel!
+    @IBOutlet var ingredientsContentLabel: UILabel!
+    @IBOutlet var stepsTitleLabel: UILabel!
+    @IBOutlet var stepsContentLabel: UILabel!
+    @IBOutlet var deleteRecipeButton: UIButton!
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTexts()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUI()
     }
 
     // MARK: - Methods
@@ -26,5 +43,24 @@ class RecipeDetailViewController: UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: Constants.Storyboard.main, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: RecipeDetailViewController.identifier) as! RecipeDetailViewController
         return viewController
+    }
+}
+
+// MARK: - Helpers
+
+private extension RecipeDetailViewController {
+    func setupTexts() {
+        ingredientsTitleLabel.text = "Ingredients:"
+        ingredientsContentLabel.text = nil
+        stepsTitleLabel.text = "Steps:"
+        stepsContentLabel.text = nil
+        deleteRecipeButton.setTitle("Delete Recipe", for: .normal)
+    }
+
+    func updateUI() {
+        recipeImageView.image = recipe?.image
+        ingredientsContentLabel.text = recipe?.ingredients
+        stepsContentLabel.text = recipe?.steps
+        self.title = recipe?.name
     }
 }
