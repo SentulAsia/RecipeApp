@@ -9,4 +9,19 @@
 import UIKit
 
 enum RecipeDetailModels {
+
+    // MARK: - Use Cases
+
+    enum RemoveFromLocalDataStore {
+        struct Request {
+            var recipe: RecipeModels.Recipe
+        }
+
+        struct Response {
+        }
+
+        struct ViewModel {
+            var isSuccessful = false
+        }
+    }
 }

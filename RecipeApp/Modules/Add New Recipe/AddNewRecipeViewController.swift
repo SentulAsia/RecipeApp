@@ -19,6 +19,7 @@ class AddNewRecipeViewController: UIViewController {
     lazy var worker = AddNewRecipeWorker()
     lazy var imagePicker = ImagePicker(for: self)
 
+    var isTextEdited: Bool = false
     var textFieldTypes: Models.TextFieldTypes?
     var textToEdit: String?
     var editedText: String? {
@@ -78,6 +79,7 @@ class AddNewRecipeViewController: UIViewController {
         )
         let request = AddNewRecipeWorker.StoreDataStoreModels.Request(recipe: recipe)
         worker.storeToLocalDataStore(with: request) { [weak self] (viewModel) in
+            self?.isTextEdited = true
             self?.dismiss(sender)
         }
     }

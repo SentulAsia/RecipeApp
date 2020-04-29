@@ -67,7 +67,7 @@ class RecipeListTests: XCTestCase {
             actualResult = viewModel.filteredRecipeList.first!.name
             expect.fulfill()
         }
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 0.1)
 
         // then
         XCTAssertEqual(expectedResult, actualResult, "filtered first element should be Home Made Pizza")

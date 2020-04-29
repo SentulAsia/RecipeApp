@@ -49,6 +49,7 @@ enum RecipeModels {
             dictionary[keys.type.rawValue] = type
             dictionary[keys.name.rawValue] = name
             dictionary[keys.ingredients.rawValue] = ingredients
+            dictionary[keys.steps.rawValue] = steps
             return dictionary
         }
     }

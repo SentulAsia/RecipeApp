@@ -65,6 +65,17 @@ class DataStoreManager {
         completion?(true)
     }
 
+    /// Remove object from storage
+    ///
+    /// - Parameters:
+    ///   - key: The object storage key
+    ///   - completion: Optional completion handler with `isSuccessful` flag.
+    func delete(for key: String, completion: ((_ isSuccessful:Bool) -> Void)? = nil) {
+        UserDefaults.standard.removeObject(forKey: key)
+        UserDefaults.standard.synchronize()
+        completion?(true)
+    }
+
     /// Delete all stored objects in storage
     ///
     /// - Parameter completion: Optional completion handler with `isSuccessful` flag.

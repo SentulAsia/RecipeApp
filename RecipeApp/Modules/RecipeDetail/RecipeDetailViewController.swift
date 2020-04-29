@@ -14,7 +14,12 @@ class RecipeDetailViewController: UIViewController {
 
     static let identifier = "RecipeDetailViewController"
 
+    typealias Models = RecipeDetailModels
+
+    lazy var worker = RecipeDetailWorker()
+
     var recipe: RecipeModels.Recipe?
+    weak var sender: RecipeListViewController?
 
     @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var ingredientsTitleLabel: UILabel!
@@ -41,6 +46,18 @@ class RecipeDetailViewController: UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: Constants.Storyboard.main, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: RecipeDetailViewController.identifier) as! RecipeDetailViewController
         return viewController
+    }
+
+    // MARK: - Use Case
+
+    // MARK: Remove Recipe
+
+    @IBAction func deleteRecipeButtonTapped(_ sender: Any) {
+        guard let recipe = recipe else { return }
+        let request = RecipeDetailWorker.RemoveDataStoreModels.Request(recipe: recipe)
+        worker.removeFromLocalDataStore(with: request) { [weak self] (viewModel) in
+            self?.routesToRecipeList()
+        }
     }
 }
 

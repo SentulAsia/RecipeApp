@@ -38,10 +38,6 @@ class RecipeListViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         updateFilterButton()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchFromLocalDataStore()
     }
 

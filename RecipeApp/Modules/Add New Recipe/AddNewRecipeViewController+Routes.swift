@@ -12,9 +12,9 @@ import UIKit
 
 extension AddNewRecipeViewController {
     func routesToSender() {
-        self.dismiss(animated: true) {
-            guard let destinationVC = UIApplication.shared.visibleViewController as? RecipeListViewController  else { return }
-            destinationVC.fetchFromLocalDataStore()
+        self.dismiss(animated: true) { [weak self] in
+            guard let destinationVC = UIApplication.shared.visibleViewController as? RecipeListViewController, self?.isTextEdited == true else { return }
+            self?.passData(to: destinationVC)
         }
     }
 
@@ -35,6 +35,10 @@ extension AddNewRecipeViewController {
 // MARK: - Data Passing
 
 private extension AddNewRecipeViewController {
+    func passData(to destinationVC: RecipeListViewController) {
+        destinationVC.filteredRecipeType = ""
+    }
+
     func passData(to destinationVC: TextPickerViewController, text: String?) {
         destinationVC.editableText = text ?? ""
     }

@@ -34,5 +34,6 @@ extension RecipeListViewController {
 private extension RecipeListViewController {
     func passData(to destinationVC: RecipeDetailViewController, recipe: RecipeModels.Recipe) {
         destinationVC.recipe = recipe
+        destinationVC.sender = self
     }
 }
