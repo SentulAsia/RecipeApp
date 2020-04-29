@@ -26,25 +26,25 @@ class RecipeListTests: XCTestCase {
     }
 
     func testFetchFromLocalDataStore() throws {
-//        // given
-//        let firstElementExpectedResult = "Panna Cotta"
-//        let lastElementExpectedResult = "Home Made Pizza"
-//        let request = FetchDataStoreModels.Request()
-//        let expect = expectation(description: "Wait for fetchFromLocalDataStore(request:) to return")
-//
-//        // when
-//        var firstElementActualResult: String!
-//        var lastElementActualResult: String!
-//
-//        sut.fetchFromLocalDataStore(with: request) { (viewModel) in
-//            firstElementActualResult = viewModel.recipeList.first!.name
-//            lastElementActualResult = viewModel.recipeList.last!.name
-//            expect.fulfill()
-//        }
-//        waitForExpectations(timeout: 1)
-//
-//        // then
-//        XCTAssertEqual(firstElementExpectedResult, firstElementActualResult, "first element should be Panna Cotta")
-//        XCTAssertEqual(lastElementExpectedResult, lastElementActualResult, "last element should be Home Made Pizza")
+        // given
+        let firstElementExpectedResult = "Panna Cotta"
+        let lastElementExpectedResult = "Home Made Pizza"
+        let request = FetchDataStoreModels.Request()
+        let expect = expectation(description: "Wait for fetchFromLocalDataStore(request:) to return")
+
+        // when
+        var firstElementActualResult: String!
+        var lastElementActualResult: String!
+
+        sut.fetchFromLocalDataStore(with: request) { (viewModel) in
+            firstElementActualResult = viewModel.recipeList.first!.name
+            lastElementActualResult = viewModel.recipeList.last!.name
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 1)
+
+        // then
+        XCTAssertEqual(firstElementExpectedResult, firstElementActualResult, "first element should be Panna Cotta")
+        XCTAssertEqual(lastElementExpectedResult, lastElementActualResult, "last element should be Home Made Pizza")
     }
 }

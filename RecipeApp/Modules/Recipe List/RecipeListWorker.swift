@@ -27,62 +27,68 @@ class RecipeListWorker {
     ///
     /// - Note: TODO: Change to Core Data so that the implementation becomes clean.
     func fetchFromLocalDataStore(with request: FetchDataStoreModels.Request, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
-        // fetch all recipe names as they are the key used to store the recipe and images
-        DataStoreManager.shared.read(for: DataStoreManager.Keys.recipeNames) { [weak self] (rawRecipeNames) in
-            guard let recipeNames = rawRecipeNames as? [String] else {
-                self?.failedFetchFromLocalDataStore(completion: completion)
-                return
-            }
+        response.recipeList = []
 
-            // 1. Use semaphone to keep track of multiple data store handler.
-            //
-            // 2. Only escape once the for in loop have complete iterate.
-            let semaphore = DispatchSemaphore(value: 0)
-
-            // semaphore is going to block the main thread
-            let dispatchQueue = DispatchQueue.global(qos: .background)
-
-            dispatchQueue.async {
-                // iterate through all recipe names to get the recipe dictionary
-                for recipeName in recipeNames {
-
-                    // fetch image as it uses a different storage
-                    var recipeImageResponse: UIImage?
-                    let imageKey = DataStoreManager.Keys.recipeImages + recipeName
-                    DataStoreManager.shared.read(for: imageKey) { [weak self] (rawRecipeImage) in
-                        guard let recipeImageData = rawRecipeImage as? Data,
-                            let recipeImage = UIImage(data: recipeImageData) else {
-                                self?.failedFetchFromLocalDataStore(completion: completion)
-                                semaphore.signal()
-                                return
-                        }
-                        recipeImageResponse = recipeImage
-                    }
-                    _ = semaphore.wait(timeout: .distantFuture)
-
-                    // fetch recipe dictionary
-                    let recipeKey = DataStoreManager.Keys.recipes + recipeName
-                    DataStoreManager.shared.read(for: recipeKey) { [weak self] (rawRecipeData) in
-                        guard let recipeData = rawRecipeData as? [String: String],
-                            let recipeImage = recipeImageResponse else {
-                                self?.failedFetchFromLocalDataStore(completion: completion)
-                                semaphore.signal()
-                                return
-                        }
-
-                        // build recipe model by merging dictionary with image
-                        var recipeResponse = RecipeModels.Recipe(fromDictionary: recipeData)
-                        recipeResponse.image = recipeImage
-                        self?.response.recipeList.append(recipeResponse)
-                        semaphore.signal()
-                    }
-                    _ = semaphore.wait(timeout: .distantFuture)
+        // perform migration if able
+        DataStoreManager.shared.migrateSchema { (isSucessful) in
+            // fetch all recipe names as they are the key used to store the recipe and images
+            DataStoreManager.shared.read(for: DataStoreManager.Keys.recipeNames) { [weak self] (rawRecipeNames) in
+                guard let recipeNames = rawRecipeNames as? [String] else {
+                    self?.failedFetchFromLocalDataStore(completion: completion)
+                    return
                 }
 
-                // once done, get back to main thread
-                DispatchQueue.main.async {
-                    let viewModel = FetchDataStoreModels.ViewModel(recipeList: self?.response.recipeList ?? [])
-                    completion(viewModel)
+                // 1. Use semaphone to keep track of multiple data store handler.
+                //
+                // 2. Only escape once the for in loop have complete iterate.
+                let semaphore = DispatchSemaphore(value: 0)
+
+                // semaphore is going to block the main thread
+                let dispatchQueue = DispatchQueue.global(qos: .background)
+
+                dispatchQueue.async {
+                    // iterate through all recipe names to get the recipe dictionary
+                    for recipeName in recipeNames {
+
+                        // fetch image as it uses a different storage
+                        var recipeImageResponse: UIImage?
+                        let imageKey = DataStoreManager.Keys.recipeImages + recipeName
+                        DataStoreManager.shared.read(for: imageKey) { [weak self] (rawRecipeImage) in
+                            guard let recipeImageData = rawRecipeImage as? Data,
+                                let recipeImage = UIImage(data: recipeImageData) else {
+                                    self?.failedFetchFromLocalDataStore(completion: completion)
+                                    semaphore.signal()
+                                    return
+                            }
+                            recipeImageResponse = recipeImage
+                            semaphore.signal()
+                        }
+                        _ = semaphore.wait(timeout: .distantFuture)
+
+                        // fetch recipe dictionary
+                        let recipeKey = DataStoreManager.Keys.recipes + recipeName
+                        DataStoreManager.shared.read(for: recipeKey) { [weak self] (rawRecipeData) in
+                            guard let recipeData = rawRecipeData as? [String: String],
+                                let recipeImage = recipeImageResponse else {
+                                    self?.failedFetchFromLocalDataStore(completion: completion)
+                                    semaphore.signal()
+                                    return
+                            }
+
+                            // build recipe model by merging dictionary with image
+                            var recipeResponse = RecipeModels.Recipe(fromDictionary: recipeData)
+                            recipeResponse.image = recipeImage
+                            self?.response.recipeList.append(recipeResponse)
+                            semaphore.signal()
+                        }
+                        _ = semaphore.wait(timeout: .distantFuture)
+                    }
+
+                    // once done, get back to main thread
+                    DispatchQueue.main.async {
+                        let viewModel = FetchDataStoreModels.ViewModel(recipeList: self?.response.recipeList ?? [])
+                        completion(viewModel)
+                    }
                 }
             }
         }
