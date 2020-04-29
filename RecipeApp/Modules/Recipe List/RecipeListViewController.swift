@@ -17,7 +17,7 @@ class RecipeListViewController: UIViewController {
 
     lazy var worker = RecipeListWorker()
 
-    var recipeList: [Models.Recipe] = [] {
+    var recipeList: [RecipeModels.Recipe] = [] {
         didSet {
             updateTableView()
         }
@@ -37,6 +37,10 @@ class RecipeListViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         updateFilterButton()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchFromLocalDataStore()
     }
 
@@ -46,7 +50,7 @@ class RecipeListViewController: UIViewController {
 
     func fetchFromLocalDataStore() {
         let request = FetchDataStoreModels.Request()
-        worker.fetchFromLocalDataStore(request: request) { [weak self] (viewModel) in
+        worker.fetchFromLocalDataStore(with: request) { [weak self] (viewModel) in
             self?.recipeList = viewModel.recipeList
         }
     }

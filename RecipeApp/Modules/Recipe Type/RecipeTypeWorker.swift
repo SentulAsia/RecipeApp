@@ -26,7 +26,7 @@ class RecipeTypeWorker: NSObject {
     /// - Parameters:
     ///   - request: request model that contains the currently selected recipe type
     ///   - completion: completion handler with the view model that contains array of RecipeType object parsed from the XML
-    func fetchFromLocalDataStore(request: FetchDataStoreModels.Request, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
+    func fetchFromLocalDataStore(with request: FetchDataStoreModels.Request, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
         validate(currentRecipeType: request.currentRecipeType)
 
         if let path = Bundle.main.url(forResource: Constants.Assets.recipeTypeXML, withExtension: "xml"),

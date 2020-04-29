@@ -14,9 +14,7 @@ class RecipeDetailViewController: UIViewController {
 
     static let identifier = "RecipeDetailViewController"
 
-    typealias Models = RecipeDetailModels
-
-    var recipe: Models.Recipe?
+    var recipe: RecipeModels.Recipe?
 
     @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var ingredientsTitleLabel: UILabel!

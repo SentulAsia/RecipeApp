@@ -53,12 +53,12 @@ class RecipeTypeViewController: UIViewController {
 
     func fetchFromLocalDataStore() {
         let request = FetchDataStoreModels.Request(currentRecipeType: currentRecipeType)
-        worker.fetchFromLocalDataStore(request: request) { [weak self] (viewModel) in
+        worker.fetchFromLocalDataStore(with: request) { [weak self] (viewModel) in
             self?.recipeTypes = viewModel.recipeTypes
         }
     }
 
-    // MARK: Perform Selected Recipe Type
+    // MARK: Selected Recipe Type
 
     @IBAction func doneButtonTapped(_ sender: Any) {
         dismiss(sender)
@@ -78,6 +78,19 @@ private extension RecipeTypeViewController {
         if recipeTypes.count > 0 {
             recipeTypePickerView.isHidden = false
             recipeTypePickerView.reloadAllComponents()
+            if !currentRecipeType.isEmpty {
+                selectDefaultRowForPickerView()
+            }
+        }
+    }
+
+    func selectDefaultRowForPickerView() {
+        var i = 0
+        for recipeType in recipeTypes {
+            if currentRecipeType == recipeType.name {
+                recipeTypePickerView.selectRow(i, inComponent: 0, animated: false)
+            }
+            i += 1
         }
     }
 
@@ -87,8 +100,7 @@ private extension RecipeTypeViewController {
         backgroundView.addGestureRecognizer(tapGesture)
     }
 
-    @objc
-    func backgroundTapGestureRecognized(_ sender: Any) {
+    @objc func backgroundTapGestureRecognized(_ sender: Any) {
         currentRecipeType = ""
         dismiss(sender)
     }

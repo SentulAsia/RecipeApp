@@ -9,14 +9,4 @@
 import UIKit
 
 enum RecipeDetailModels {
-
-    // MARK: - Types
-
-    struct Recipe {
-        var type: String
-        var name: String
-        var ingredients: String
-        var steps: String
-        var image: UIImage
-    }
 }

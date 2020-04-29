@@ -24,6 +24,6 @@ extension RecipeListViewController: UITableViewDataSource {
 extension RecipeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        routesToRecipeDetail(model: recipeList[indexPath.row])
+        routesToRecipeDetail(recipe: recipeList[indexPath.row])
     }
 }

@@ -27,6 +27,8 @@ class DataStoreManager {
 
     // MARK: - Properties
 
+    lazy var addNewRecipeWorker = AddNewRecipeWorker() // Used to seed the recipe
+
     let currentSchemaVersion = 1 // Bump this version if there is a migration added
 
     /// The schema version based on last migration performed
@@ -63,6 +65,22 @@ class DataStoreManager {
         completion?(true)
     }
 
+    /// Delete all stored objects in storage
+    ///
+    /// - Parameter completion: Optional completion handler with `isSuccessful` flag.
+    ///
+    /// Used in unit test to flush the storage
+    func deleteAll(completion: ((_ isSuccessful:Bool) -> Void)? = nil) {
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
+            completion?(false)
+            return
+        }
+
+        UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+        UserDefaults.standard.synchronize()
+        completion?(true)
+    }
+
     /// Migrate schema to the latest version
     ///
     /// - Parameter completion: completion handler with `isSuccessful` flag.
@@ -77,28 +95,38 @@ class DataStoreManager {
         let oldSchemaVersion = schemaVersion
         let newSchemaVersion = currentSchemaVersion
 
+        let semaphore = DispatchSemaphore(value: 0)
+        let dispatchQueue = DispatchQueue.global(qos: .background)
+
         if oldSchemaVersion < newSchemaVersion {
 
-            // migrate based on version
-            switch oldSchemaVersion {
+            dispatchQueue.async { [weak self] in
+                // migrate based on version
+                switch oldSchemaVersion {
 
-            /*
-                 v0 -> v1:
+                /*
+                     v0 -> v1:
 
-                 Seed Recipe
-             */
-            case 0:
-                seeds()
+                     Seed Recipe
+                 */
+                case 0:
+                    _ = self?.seeds(completion: { (isSuccessful) in
+                        semaphore.signal()
+                    })
+                    _ = semaphore.wait(timeout: .distantFuture)
 
-            default:
-                break
+                default:
+                    break
+                }
+
+                DispatchQueue.main.async {
+                    // update the schema version
+                    UserDefaults.standard.set(newSchemaVersion, forKey: Keys.schemaVersion)
+                    UserDefaults.standard.synchronize()
+
+                    completion?(true)
+                }
             }
-
-            // update the schema version
-            UserDefaults.standard.set(newSchemaVersion, forKey: Keys.schemaVersion)
-            UserDefaults.standard.synchronize()
-
-            completion?(true)
 
         } else if oldSchemaVersion > newSchemaVersion {
             print("The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion).")

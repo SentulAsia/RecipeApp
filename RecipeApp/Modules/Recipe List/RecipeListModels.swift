@@ -17,41 +17,11 @@ enum RecipeListModels {
         }
 
         struct Response {
-            var recipeList: [Recipe] = []
+            var recipeList: [RecipeModels.Recipe] = []
         }
 
         struct ViewModel {
-            var recipeList: [Recipe] = []
+            var recipeList: [RecipeModels.Recipe] = []
         }
-    }
-
-    // MARK: - Types
-
-    struct Recipe {
-        var type: String
-        var name: String
-        var ingredients: String
-        var steps: String
-        var image: UIImage
-
-//        /// Make the model object persistant
-//        func write() {
-//            let imageData = image.pngData()
-//            DataStoreManager.shared.write(value: [name: imageData], for: DataStoreManager.Keys.recipeImage)
-//            DataStoreManager.shared.write(value: [name: ingredients], for: DataStoreManager.Keys.recipeIngredients)
-//            DataStoreManager.shared.write(value: [name: steps], for: DataStoreManager.Keys.recipeSteps)
-//            DataStoreManager.shared.read(for: DataStoreManager.Keys.recipeKeys, completion: { (rawKeysData) in
-//                if var keysData = rawKeysData as? [String] {
-//                    // key already exist in Data Store, no need append a new one
-//                    if !keysData.contains(self.name) {
-//                        keysData.append(self.name)
-//                        DataStoreManager.shared.write(value: keysData, for: DataStoreManager.Keys.recipeKeys)
-//                    }
-//                } else {
-//                    let keysData: [String] = [self.name]
-//                    DataStoreManager.shared.write(value: keysData, for: DataStoreManager.Keys.recipeKeys)
-//                }
-//            })
-//        }
     }
 }

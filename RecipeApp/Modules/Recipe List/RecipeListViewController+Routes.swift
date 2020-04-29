@@ -11,15 +11,16 @@ import UIKit
 // MARK: - Routing
 
 extension RecipeListViewController {
-    func routesToRecipeDetail(model: Models.Recipe) {
+    func routesToRecipeDetail(recipe: RecipeModels.Recipe) {
         let destinationVC = RecipeDetailViewController.loadFromNib()
-        passData(to: destinationVC, with: model)
+        passData(to: destinationVC, recipe: recipe)
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 
     func routesToAddNewRecipe() {
         let destinationVC = AddNewRecipeViewController.loadFromNib()
-        self.navigationController?.pushViewController(destinationVC, animated: true)
+        let navigationVC = UINavigationController(rootViewController: destinationVC)
+        self.present(navigationVC, animated: true)
     }
 
     func routesToRecipeTypesPicker() {
@@ -31,8 +32,7 @@ extension RecipeListViewController {
 // MARK: - Data Passing
 
 private extension RecipeListViewController {
-    func passData(to destinationVC: RecipeDetailViewController, with model: Models.Recipe) {
-        let recipe = RecipeDetailModels.Recipe(type: model.type, name: model.name, ingredients: model.ingredients, steps: model.steps, image: model.image)
+    func passData(to destinationVC: RecipeDetailViewController, recipe: RecipeModels.Recipe) {
         destinationVC.recipe = recipe
     }
 }

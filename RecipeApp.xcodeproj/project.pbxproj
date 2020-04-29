@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8128BBC245998D600C7D26D /* TextPickerViewController+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8128BBB245998D600C7D26D /* TextPickerViewController+Routes.swift */; };
 		B83F4A122459294300DB041C /* RecipeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F4A112459294300DB041C /* RecipeListTests.swift */; };
 		B83F4A1424592E5000DB041C /* RecipeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F4A1324592E5000DB041C /* RecipeListTableViewCell.swift */; };
 		B83F4A172459318500DB041C /* RecipeDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F4A162459318500DB041C /* RecipeDetailModels.swift */; };
@@ -31,6 +32,13 @@
 		B89DF19C2457F5C000A02F62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89DF19B2457F5C000A02F62 /* Constants.swift */; };
 		B89DF19E2457F82C00A02F62 /* RecipeTypeViewController+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89DF19D2457F82C00A02F62 /* RecipeTypeViewController+Routes.swift */; };
 		B89DF1A0245809A100A02F62 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89DF19F245809A100A02F62 /* RecipeDetailViewController.swift */; };
+		B8C1D30B24593DB3002D08F7 /* AddNewRecipeViewController+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C1D30A24593DB3002D08F7 /* AddNewRecipeViewController+Routes.swift */; };
+		B8C1D30D245941E0002D08F7 /* AddNewRecipeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C1D30C245941E0002D08F7 /* AddNewRecipeWorker.swift */; };
+		B8C1D30F24594329002D08F7 /* AddNewRecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C1D30E24594329002D08F7 /* AddNewRecipeModels.swift */; };
+		B8C1D3112459595D002D08F7 /* AddNewRecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C1D3102459595D002D08F7 /* AddNewRecipeTests.swift */; };
+		B8C1D31324595E91002D08F7 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C1D31224595E91002D08F7 /* RecipeModels.swift */; };
+		B8C1D31824598589002D08F7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C1D31724598589002D08F7 /* ImagePicker.swift */; };
+		B8C1D31A2459900F002D08F7 /* TextPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C1D3192459900F002D08F7 /* TextPickerViewController.swift */; };
 		B8D857A82458591A0070027A /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D857A72458591A0070027A /* DataStoreManager.swift */; };
 		B8D857AB24585E830070027A /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D857AA24585E830070027A /* Seeds.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B8128BBB245998D600C7D26D /* TextPickerViewController+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextPickerViewController+Routes.swift"; sourceTree = "<group>"; };
 		B83F4A112459294300DB041C /* RecipeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListTests.swift; sourceTree = "<group>"; };
 		B83F4A1324592E5000DB041C /* RecipeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListTableViewCell.swift; sourceTree = "<group>"; };
 		B83F4A162459318500DB041C /* RecipeDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailModels.swift; sourceTree = "<group>"; };
@@ -74,6 +83,13 @@
 		B89DF19B2457F5C000A02F62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B89DF19D2457F82C00A02F62 /* RecipeTypeViewController+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeTypeViewController+Routes.swift"; sourceTree = "<group>"; };
 		B89DF19F245809A100A02F62 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
+		B8C1D30A24593DB3002D08F7 /* AddNewRecipeViewController+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewRecipeViewController+Routes.swift"; sourceTree = "<group>"; };
+		B8C1D30C245941E0002D08F7 /* AddNewRecipeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRecipeWorker.swift; sourceTree = "<group>"; };
+		B8C1D30E24594329002D08F7 /* AddNewRecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRecipeModels.swift; sourceTree = "<group>"; };
+		B8C1D3102459595D002D08F7 /* AddNewRecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRecipeTests.swift; sourceTree = "<group>"; };
+		B8C1D31224595E91002D08F7 /* RecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModels.swift; sourceTree = "<group>"; };
+		B8C1D31724598589002D08F7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B8C1D3192459900F002D08F7 /* TextPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPickerViewController.swift; sourceTree = "<group>"; };
 		B8D857A72458591A0070027A /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		B8D857AA24585E830070027A /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,18 +112,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B83F4A1524592E5700DB041C /* View */ = {
+		B8128BBA2459920400C7D26D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B89DF17B2457E2D600A02F62 /* LaunchScreen.storyboard */,
+				B89DF1762457E2D400A02F62 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8128BBD2459A83300C7D26D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B8C1D31424595E9A002D08F7 /* Models */,
+				B8128BBA2459920400C7D26D /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B83F4A1524592E5700DB041C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				B83F4A1324592E5000DB041C /* RecipeListTableViewCell.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B85129E624580F0C000696B2 /* Add New Recipe */ = {
 			isa = PBXGroup;
 			children = (
 				B85129E424580F08000696B2 /* AddNewRecipeViewController.swift */,
+				B8C1D30A24593DB3002D08F7 /* AddNewRecipeViewController+Routes.swift */,
+				B8C1D30E24594329002D08F7 /* AddNewRecipeModels.swift */,
+				B8C1D30C245941E0002D08F7 /* AddNewRecipeWorker.swift */,
 			);
 			path = "Add New Recipe";
 			sourceTree = "<group>";
@@ -161,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				B83F4A112459294300DB041C /* RecipeListTests.swift */,
+				B8C1D3102459595D002D08F7 /* AddNewRecipeTests.swift */,
 				B865A42F24581A29007DB667 /* RecipeTypeTests.swift */,
 				B89DF1892457E2D600A02F62 /* Info.plist */,
 			);
@@ -175,6 +213,7 @@
 				B865A43724585106007DB667 /* Extension */,
 				B8D857A924585E5B0070027A /* Data Store */,
 				B89DF19B2457F5C000A02F62 /* Constants.swift */,
+				B8C1D31724598589002D08F7 /* ImagePicker.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -182,12 +221,12 @@
 		B89DF1932457EEA100A02F62 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				B89DF17B2457E2D600A02F62 /* LaunchScreen.storyboard */,
-				B89DF1762457E2D400A02F62 /* Main.storyboard */,
+				B8128BBD2459A83300C7D26D /* Shared */,
 				B89DF1962457F0A400A02F62 /* Recipe List */,
 				B89DF1A1245809A500A02F62 /* RecipeDetail */,
 				B85129E624580F0C000696B2 /* Add New Recipe */,
 				B89DF1992457F2F900A02F62 /* Recipe Type */,
+				B8C1D31B2459901B002D08F7 /* Text Picker */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -195,7 +234,7 @@
 		B89DF1962457F0A400A02F62 /* Recipe List */ = {
 			isa = PBXGroup;
 			children = (
-				B83F4A1524592E5700DB041C /* View */,
+				B83F4A1524592E5700DB041C /* Views */,
 				B89DF1742457E2D400A02F62 /* RecipeListViewController.swift */,
 				B898F461245866360064C6F0 /* RecipeListViewController+TableView.swift */,
 				B89DF1942457F09900A02F62 /* RecipeListViewController+Routes.swift */,
@@ -233,6 +272,23 @@
 				B83F4A162459318500DB041C /* RecipeDetailModels.swift */,
 			);
 			path = RecipeDetail;
+			sourceTree = "<group>";
+		};
+		B8C1D31424595E9A002D08F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B8C1D31224595E91002D08F7 /* RecipeModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B8C1D31B2459901B002D08F7 /* Text Picker */ = {
+			isa = PBXGroup;
+			children = (
+				B8C1D3192459900F002D08F7 /* TextPickerViewController.swift */,
+				B8128BBB245998D600C7D26D /* TextPickerViewController+Routes.swift */,
+			);
+			path = "Text Picker";
 			sourceTree = "<group>";
 		};
 		B8D857A924585E5B0070027A /* Data Store */ = {
@@ -348,6 +404,10 @@
 			files = (
 				B89DF1952457F09900A02F62 /* RecipeListViewController+Routes.swift in Sources */,
 				B865A43224582144007DB667 /* RecipeTypeModels.swift in Sources */,
+				B8C1D31824598589002D08F7 /* ImagePicker.swift in Sources */,
+				B8128BBC245998D600C7D26D /* TextPickerViewController+Routes.swift in Sources */,
+				B8C1D31A2459900F002D08F7 /* TextPickerViewController.swift in Sources */,
+				B8C1D30B24593DB3002D08F7 /* AddNewRecipeViewController+Routes.swift in Sources */,
 				B865A436245850FF007DB667 /* UIApplication+Utility.swift in Sources */,
 				B898F464245866880064C6F0 /* RecipeListModels.swift in Sources */,
 				B89DF19E2457F82C00A02F62 /* RecipeTypeViewController+Routes.swift in Sources */,
@@ -358,8 +418,11 @@
 				B865A434245828BA007DB667 /* RecipeTypeViewController+PickerView.swift in Sources */,
 				B898F4672458740F0064C6F0 /* RecipeListWorker.swift in Sources */,
 				B89DF1752457E2D400A02F62 /* RecipeListViewController.swift in Sources */,
+				B8C1D30F24594329002D08F7 /* AddNewRecipeModels.swift in Sources */,
 				B8D857AB24585E830070027A /* Seeds.swift in Sources */,
+				B8C1D30D245941E0002D08F7 /* AddNewRecipeWorker.swift in Sources */,
 				B89DF1712457E2D400A02F62 /* AppDelegate.swift in Sources */,
+				B8C1D31324595E91002D08F7 /* RecipeModels.swift in Sources */,
 				B83F4A172459318500DB041C /* RecipeDetailModels.swift in Sources */,
 				B89DF1982457F2F400A02F62 /* RecipeTypeViewController.swift in Sources */,
 				B89DF1732457E2D400A02F62 /* SceneDelegate.swift in Sources */,
@@ -373,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8C1D3112459595D002D08F7 /* AddNewRecipeTests.swift in Sources */,
 				B865A43024581A2A007DB667 /* RecipeTypeTests.swift in Sources */,
 				B83F4A122459294300DB041C /* RecipeListTests.swift in Sources */,
 			);

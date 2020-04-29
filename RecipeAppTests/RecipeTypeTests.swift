@@ -29,13 +29,13 @@ class RecipeTypeTests: XCTestCase {
         let lastElementExpectedResult = "Drinks"
         let currentRecipeType = ""
         let request = FetchDataStoreModels.Request(currentRecipeType: currentRecipeType)
+        let expect = expectation(description: "Wait for fetchFromLocalDataStore(request:) to return")
 
         // when
-        let expect = expectation(description: "Wait for fetchFromLocalDataStore(request:) to return")
         var firstElementActualResult: String!
         var lastElementActualResult: String!
 
-        sut.fetchFromLocalDataStore(request: request) { (viewModel) in
+        sut.fetchFromLocalDataStore(with: request) { (viewModel) in
             firstElementActualResult = viewModel.recipeTypes.first!.name
             lastElementActualResult = viewModel.recipeTypes.last!.name
             expect.fulfill()
@@ -59,7 +59,7 @@ class RecipeTypeTests: XCTestCase {
         var firstElementActualResult: String!
         var lastElementActualResult: String!
 
-        sut.fetchFromLocalDataStore(request: request) { (viewModel) in
+        sut.fetchFromLocalDataStore(with: request) { (viewModel) in
             firstElementActualResult = viewModel.recipeTypes.first!.name
             lastElementActualResult = viewModel.recipeTypes.last!.name
             expect.fulfill()

@@ -13,10 +13,15 @@ import UIKit
 extension RecipeTypeViewController {
     func routesToSender() {
         self.dismiss(animated: true) { [weak self] in
-            guard let destinationVC = UIApplication.shared.visibleViewController as? RecipeListViewController,
+            if let destinationVC = UIApplication.shared.visibleViewController as? RecipeListViewController,
                 let currentRecipeType = self?.currentRecipeType,
-                !currentRecipeType.isEmpty else { return }
-            destinationVC.filteredRecipeType = currentRecipeType
+                !currentRecipeType.isEmpty {
+                destinationVC.filteredRecipeType = currentRecipeType
+            } else if let destinationVC = UIApplication.shared.visibleViewController as? AddNewRecipeViewController,
+                let currentRecipeType = self?.currentRecipeType,
+                !currentRecipeType.isEmpty {
+                destinationVC.editedText = currentRecipeType
+            }
         }
     }
 }

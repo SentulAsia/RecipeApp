@@ -26,7 +26,11 @@ extension UIApplication {
         } else if let navigationController = rootViewController as? UINavigationController {
             return navigationController.visibleViewController
         } else if let tabBarController = rootViewController as? UITabBarController {
-            return tabBarController.selectedViewController
+            if let navigationController = tabBarController.selectedViewController as? UINavigationController {
+                return navigationController.visibleViewController
+            } else {
+                return tabBarController.selectedViewController
+            }
         }
 
         return rootViewController
