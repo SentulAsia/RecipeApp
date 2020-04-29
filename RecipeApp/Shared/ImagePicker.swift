@@ -33,14 +33,12 @@ class ImagePicker: NSObject {
 
 extension ImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print(#function)
         picker.dismiss(animated: true) { [weak self] in
             self?.completion?(nil)
         }
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print(#function)
         var image: UIImage?
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             image = editedImage

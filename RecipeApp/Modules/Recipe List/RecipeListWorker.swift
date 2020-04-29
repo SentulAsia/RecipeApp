@@ -14,8 +14,9 @@ class RecipeListWorker {
 
     typealias Models = RecipeListModels
     typealias FetchDataStoreModels = Models.FetchFromLocalDataStore
+    typealias FilterRecipeModels = Models.FilterRecipeList
 
-    var response = FetchDataStoreModels.Response()
+    var fetchFromLocalDataStoreResponse = FetchDataStoreModels.Response()
 
     // MARK: - Methods
 
@@ -27,7 +28,7 @@ class RecipeListWorker {
     ///
     /// - Note: TODO: Change to Core Data so that the implementation becomes clean.
     func fetchFromLocalDataStore(with request: FetchDataStoreModels.Request, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
-        response.recipeList = []
+        fetchFromLocalDataStoreResponse.recipeList = []
 
         // perform migration if able
         DataStoreManager.shared.migrateSchema { (isSucessful) in
@@ -78,7 +79,7 @@ class RecipeListWorker {
                             // build recipe model by merging dictionary with image
                             var recipeResponse = RecipeModels.Recipe(fromDictionary: recipeData)
                             recipeResponse.image = recipeImage
-                            self?.response.recipeList.append(recipeResponse)
+                            self?.fetchFromLocalDataStoreResponse.recipeList.append(recipeResponse)
                             semaphore.signal()
                         }
                         _ = semaphore.wait(timeout: .distantFuture)
@@ -86,12 +87,20 @@ class RecipeListWorker {
 
                     // once done, get back to main thread
                     DispatchQueue.main.async {
-                        let viewModel = FetchDataStoreModels.ViewModel(recipeList: self?.response.recipeList ?? [])
+                        let viewModel = FetchDataStoreModels.ViewModel(recipeList: self?.fetchFromLocalDataStoreResponse.recipeList ?? [])
                         completion(viewModel)
                     }
                 }
             }
         }
+    }
+
+    func filterRecipeList(with request: FilterRecipeModels.Request, completion: @escaping (_ viewModel: FilterRecipeModels.ViewModel) -> Void) {
+        let recipeListReponse = request.recipeList.filter {
+            $0.type == request.filter
+        }
+        let viewModel = FilterRecipeModels.ViewModel(filteredRecipeList: recipeListReponse)
+        completion(viewModel)
     }
 }
 

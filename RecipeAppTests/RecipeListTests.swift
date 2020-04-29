@@ -13,6 +13,7 @@ class RecipeListTests: XCTestCase {
 
     typealias Models = RecipeListModels
     typealias FetchDataStoreModels = Models.FetchFromLocalDataStore
+    typealias FilterRecipeModels = Models.FilterRecipeList
     var sut: RecipeListWorker!
 
     override func setUpWithError() throws {
@@ -46,5 +47,29 @@ class RecipeListTests: XCTestCase {
         // then
         XCTAssertEqual(firstElementExpectedResult, firstElementActualResult, "first element should be Panna Cotta")
         XCTAssertEqual(lastElementExpectedResult, lastElementActualResult, "last element should be Home Made Pizza")
+    }
+
+    func testFilterRecipeList() throws {
+        // given
+        let expectedResult = "Home Made Pizza"
+        var recipes: [RecipeModels.Recipe] = []
+        let recipe1 = DataStoreManager.shared.generateRecipe1()
+        recipes.append(recipe1)
+        let recipe2 = DataStoreManager.shared.generateRecipe2()
+        recipes.append(recipe2)
+        let request = FilterRecipeModels.Request(recipeList: recipes, filter: "Main Course")
+        let expect = expectation(description: "Wait for filterRecipeList(request:) to return")
+
+        // when
+        var actualResult: String!
+
+        sut.filterRecipeList(with: request) { (viewModel) in
+            actualResult = viewModel.filteredRecipeList.first!.name
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 1)
+
+        // then
+        XCTAssertEqual(expectedResult, actualResult, "filtered first element should be Home Made Pizza")
     }
 }

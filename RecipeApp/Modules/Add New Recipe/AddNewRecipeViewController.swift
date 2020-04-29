@@ -155,6 +155,17 @@ private extension AddNewRecipeViewController {
         default:
             break
         }
+        updateButton()
+    }
+
+    func updateButton() {
+        let isImageUpdated = recipeImageView.image?.description != #imageLiteral(resourceName: "placeholder").description
+        let isNameUpdated = nameContentLabel.text != "An Awesome recipe" && nameContentLabel.text != ""
+        let isIngredientUpdated = ingredientsContentLabel.text != "An awesome ingredients for your recipe" && ingredientsContentLabel.text != ""
+        let isStepsUpdated = stepsContentLabel.text != "Steps to create your awesome recipe" && stepsContentLabel.text != ""
+        if isImageUpdated && isNameUpdated && isIngredientUpdated && isStepsUpdated {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
 
     func setupButtons() {
@@ -162,6 +173,7 @@ private extension AddNewRecipeViewController {
         self.navigationItem.setLeftBarButton(leftButton, animated: true)
         let rightButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(doneButtonTapped))
         self.navigationItem.setRightBarButton(rightButton, animated: true)
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
     }
 
     func dismiss(_ sender: Any) {

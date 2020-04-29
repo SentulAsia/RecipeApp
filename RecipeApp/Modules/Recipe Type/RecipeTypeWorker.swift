@@ -15,7 +15,7 @@ class RecipeTypeWorker: NSObject {
     typealias Models = RecipeTypeModels
     typealias FetchDataStoreModels = Models.FetchFromLocalDataStore
 
-    var response = FetchDataStoreModels.Response()
+    var fetchFromLocalDataStoreResponse = FetchDataStoreModels.Response()
     var elementNameResponse = String()
     var recipeTypeResponse = String()
 
@@ -35,7 +35,7 @@ class RecipeTypeWorker: NSObject {
             parser.parse()
         }
 
-        let viewModel = Models.FetchFromLocalDataStore.ViewModel(recipeTypes: response.recipeTypes)
+        let viewModel = Models.FetchFromLocalDataStore.ViewModel(recipeTypes: fetchFromLocalDataStoreResponse.recipeTypes)
         completion(viewModel)
     }
 }
@@ -53,7 +53,7 @@ private extension RecipeTypeWorker {
     func validate(currentRecipeType: String) {
         if currentRecipeType.isEmpty {
             let type = Models.RecipeType(name: currentRecipeType)
-            response.recipeTypes.append(type)
+            fetchFromLocalDataStoreResponse.recipeTypes.append(type)
         }
     }
 }
@@ -70,7 +70,7 @@ extension RecipeTypeWorker: XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == Constants.Assets.elementContainer {
             let type = Models.RecipeType(name: recipeTypeResponse)
-            response.recipeTypes.append(type)
+            fetchFromLocalDataStoreResponse.recipeTypes.append(type)
         }
     }
 

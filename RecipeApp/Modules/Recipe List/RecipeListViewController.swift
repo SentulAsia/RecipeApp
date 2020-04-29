@@ -26,6 +26,7 @@ class RecipeListViewController: UIViewController {
     var filteredRecipeType = "" {
         didSet {
             updateFilterButton()
+            filterRecipeList()
         }
     }
 
@@ -52,6 +53,19 @@ class RecipeListViewController: UIViewController {
         let request = FetchDataStoreModels.Request()
         worker.fetchFromLocalDataStore(with: request) { [weak self] (viewModel) in
             self?.recipeList = viewModel.recipeList
+        }
+    }
+
+    // MARK: Perform Filter Recipe List
+
+    func filterRecipeList() {
+        if filteredRecipeType.isEmpty {
+            fetchFromLocalDataStore()
+        } else {
+            let request = RecipeListWorker.FilterRecipeModels.Request(recipeList: recipeList, filter: filteredRecipeType)
+            worker.filterRecipeList(with: request) { [weak self] (viewModel) in
+                self?.recipeList = viewModel.filteredRecipeList
+            }
         }
     }
 

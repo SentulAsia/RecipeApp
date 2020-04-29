@@ -24,4 +24,19 @@ enum RecipeListModels {
             var recipeList: [RecipeModels.Recipe] = []
         }
     }
+
+    enum FilterRecipeList {
+        struct Request {
+            var recipeList: [RecipeModels.Recipe] = []
+            var filter: String
+        }
+
+        struct Response {
+            var recipeList: [RecipeModels.Recipe] = []
+        }
+
+        struct ViewModel {
+            var filteredRecipeList: [RecipeModels.Recipe] = []
+        }
+    }
 }
