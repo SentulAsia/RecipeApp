@@ -12,7 +12,7 @@ import XCTest
 class RecipeTypeTests: XCTestCase {
 
     typealias Models = RecipeTypeModels
-    typealias LocalDataStoreModels = Models.FetchFromLocalDataStore
+    typealias FetchDataStoreModels = Models.FetchFromLocalDataStore
     var sut: RecipeTypeWorker!
 
     override func setUpWithError() throws {
@@ -28,7 +28,7 @@ class RecipeTypeTests: XCTestCase {
         let firstElementExpectedResult = ""
         let lastElementExpectedResult = "Drinks"
         let currentRecipeType = ""
-        let request = LocalDataStoreModels.Request(currentRecipeType: currentRecipeType)
+        let request = FetchDataStoreModels.Request(currentRecipeType: currentRecipeType)
 
         // when
         let expect = expectation(description: "Wait for fetchFromLocalDataStore(request:) to return")
@@ -52,7 +52,7 @@ class RecipeTypeTests: XCTestCase {
         let firstElementExpectedResult = "Starter"
         let lastElementExpectedResult = "Drinks"
         let currentRecipeType = "Dessert"
-        let request = LocalDataStoreModels.Request(currentRecipeType: currentRecipeType)
+        let request = FetchDataStoreModels.Request(currentRecipeType: currentRecipeType)
 
         // when
         let expect = expectation(description: "Wait for fetchFromLocalDataStore(request:) to return")

@@ -13,6 +13,7 @@ class AddNewRecipeViewController: UIViewController {
     // MARK: - Properties
 
     static let identifier = "AddNewRecipeViewController"
+    
     @IBOutlet var newRecipeFormTableView: UITableView!
 
     // MARK: - View Lifecycle

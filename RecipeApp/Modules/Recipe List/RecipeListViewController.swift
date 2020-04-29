@@ -12,6 +12,17 @@ class RecipeListViewController: UIViewController {
 
     // MARK: - Properties
 
+    typealias Models = RecipeListModels
+    typealias FetchDataStoreModels = Models.FetchFromLocalDataStore
+
+    lazy var worker = RecipeListWorker()
+
+    var recipeList: [Models.Recipe] = [] {
+        didSet {
+            updateTableView()
+        }
+    }
+
     var filteredRecipeType = "" {
         didSet {
             updateFilterButton()
@@ -25,9 +36,19 @@ class RecipeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        fetchFromLocalDataStore()
     }
 
     // MARK: - Use Case
+
+    // MARK: Fetch From Local Data Store
+
+    func fetchFromLocalDataStore() {
+        let request = FetchDataStoreModels.Request()
+        worker.fetchFromLocalDataStore(request: request) { [weak self] (viewModel) in
+            self?.recipeList = viewModel.recipeList
+        }
+    }
 
     // MARK: Filter Current Recipe
 
@@ -51,6 +72,13 @@ class RecipeListViewController: UIViewController {
 private extension RecipeListViewController {
     func setupTableView() {
         recipeListTableView.isHidden = true
+        recipeListTableView.dataSource = self
+        recipeListTableView.delegate = self
+    }
+
+    func updateTableView() {
+        recipeListTableView.isHidden = recipeList.count == 0
+        recipeListTableView.reloadData()
     }
 
     func updateFilterButton() {

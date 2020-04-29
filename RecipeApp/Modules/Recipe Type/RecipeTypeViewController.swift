@@ -15,14 +15,16 @@ class RecipeTypeViewController: UIViewController {
     static let identifier = "RecipeTypeViewController"
 
     typealias Models = RecipeTypeModels
-    typealias LocalDataStoreModels = Models.FetchFromLocalDataStore
+    typealias FetchDataStoreModels = Models.FetchFromLocalDataStore
+
     lazy var worker = RecipeTypeWorker()
+    var currentRecipeType = ""
+
     var recipeTypes: [Models.RecipeType] = [] {
         didSet {
             updatePickerView()
         }
     }
-    var currentRecipeType = ""
 
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var recipeTypePickerView: UIPickerView!
@@ -50,7 +52,7 @@ class RecipeTypeViewController: UIViewController {
     // MARK: Fetch From Local Data Store
 
     func fetchFromLocalDataStore() {
-        let request = LocalDataStoreModels.Request(currentRecipeType: currentRecipeType)
+        let request = FetchDataStoreModels.Request(currentRecipeType: currentRecipeType)
         worker.fetchFromLocalDataStore(request: request) { [weak self] (viewModel) in
             self?.recipeTypes = viewModel.recipeTypes
         }
@@ -80,12 +82,17 @@ private extension RecipeTypeViewController {
     }
 
     func setupTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismiss))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapGestureRecognized))
         tapGesture.cancelsTouchesInView = false
         backgroundView.addGestureRecognizer(tapGesture)
     }
 
     @objc
+    func backgroundTapGestureRecognized(_ sender: Any) {
+        currentRecipeType = ""
+        dismiss(sender)
+    }
+
     func dismiss(_ sender: Any) {
         routesToSender()
     }

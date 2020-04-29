@@ -19,13 +19,40 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="119" id="KYy-Si-hoh">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="119"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeListTableViewCell" id="KYy-Si-hoh" customClass="RecipeListTableViewCell" customModule="RecipeApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="64.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYy-Si-hoh" id="aPU-q8-B3e">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rox-ZW-PeC">
+                                                    <rect key="frame" x="15" y="0.0" width="64.5" height="64.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="CPj-ej-qfe"/>
+                                                        <constraint firstAttribute="width" secondItem="rox-ZW-PeC" secondAttribute="height" multiplier="1:1" id="f3X-V1-9aZ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbw-L4-dTr">
+                                                    <rect key="frame" x="87.5" y="22" width="272.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="rox-ZW-PeC" secondAttribute="bottom" id="X8N-w0-AmZ"/>
+                                                <constraint firstItem="rbw-L4-dTr" firstAttribute="leading" secondItem="rox-ZW-PeC" secondAttribute="trailing" constant="8" id="bOd-ac-Ble"/>
+                                                <constraint firstItem="rox-ZW-PeC" firstAttribute="leading" secondItem="aPU-q8-B3e" secondAttribute="leadingMargin" id="bYP-sj-iNK"/>
+                                                <constraint firstItem="rox-ZW-PeC" firstAttribute="top" secondItem="aPU-q8-B3e" secondAttribute="top" id="bqh-pY-tQL"/>
+                                                <constraint firstItem="rbw-L4-dTr" firstAttribute="centerY" secondItem="aPU-q8-B3e" secondAttribute="centerY" id="qQF-LL-BJS"/>
+                                                <constraint firstItem="rbw-L4-dTr" firstAttribute="trailing" secondItem="aPU-q8-B3e" secondAttribute="trailingMargin" id="qT5-ng-s5R"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recipeImageView" destination="rox-ZW-PeC" id="QNT-Fo-xpu"/>
+                                            <outlet property="recipeNameLabel" destination="rbw-L4-dTr" id="ffl-hS-VeT"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -40,12 +67,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="5LD-dZ-yBB">
-                        <barButtonItem key="leftBarButtonItem" title="Filter: None" style="plain" id="Tf6-Hc-aOk">
+                        <barButtonItem key="leftBarButtonItem" title="Filter: None" id="Tf6-Hc-aOk">
                             <connections>
                                 <action selector="filterButtonTapped:" destination="BYZ-38-t0r" id="vUU-zQ-uIz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="lMR-DN-ZNB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lMR-DN-ZNB">
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="FZo-KV-rqW"/>
                             </connections>
